@@ -242,7 +242,7 @@
     ) {
       addBotMessage("Hey you've triggered the secret function. Opening private room…");
 setTimeout(() => {
-  window.open("https://app.element.io/#/room/#whistle-secret:matrix.org", "_blank");
+  window.location.href = "https://app.element.io/#/room/#whistle-secret:matrix.org";
 }, 1500);
 
       lastQuestion = "";
