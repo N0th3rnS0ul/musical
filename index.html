@@ -83,6 +83,83 @@
       color: #555;
       font-size: 0.95rem;
     }
+
+    /* Chatbot styles */
+    #chat-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    #chat-header {
+      background: #1abc9c;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    #chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 0.95rem;
+    }
+
+    #chat-input-area {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+
+    #chat-send {
+      background: #1abc9c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .chat-bot {
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .chat-user {
+      text-align: right;
+      color: #1abc9c;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -122,6 +199,56 @@
       </div>
     </div>
   </main>
+
+  <!-- Chatbot UI -->
+  <button id="chat-icon">💬</button>
+
+  <div id="chat-window">
+    <div id="chat-header">Need help?</div>
+    <div id="chat-messages">
+      <div class="chat-bot">Ask me for help!</div>
+    </div>
+    <div id="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatIcon = document.getElementById("chat-icon");
+    const chatWindow = document.getElementById("chat-window");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatInput = document.getElementById("chat-input");
+    const chatSend = document.getElementById("chat-send");
+
+    chatIcon.onclick = () => {
+      chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+    };
+
+    chatSend.onclick = () => {
+      const msg = chatInput.value.trim();
+      if (msg) {
+        const userMsg = document.createElement("div");
+        userMsg.className = "chat-user";
+        userMsg.innerText = msg;
+        chatMessages.appendChild(userMsg);
+        chatInput.value = "";
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Simulate bot reply
+        const botReply = document.createElement("div");
+        botReply.className = "chat-bot";
+        botReply.innerText = "I'm just a demo for now 😊";
+        setTimeout(() => {
+          chatMessages.appendChild(botReply);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 500);
+      }
+    };
+  </script>
+</body>
+</html>
+
 </body>
 </html>
 
