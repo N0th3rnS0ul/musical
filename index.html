@@ -215,37 +215,80 @@
   </div>
 
   <script>
-    const chatIcon = document.getElementById("chat-icon");
-    const chatWindow = document.getElementById("chat-window");
-    const chatMessages = document.getElementById("chat-messages");
-    const chatInput = document.getElementById("chat-input");
-    const chatSend = document.getElementById("chat-send");
+  const chatIcon = document.getElementById("chat-icon");
+  const chatWindow = document.getElementById("chat-window");
+  const chatMessages = document.getElementById("chat-messages");
+  const chatInput = document.getElementById("chat-input");
+  const chatSend = document.getElementById("chat-send");
 
-    chatIcon.onclick = () => {
-      chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
-    };
+  let lastQuestion = ""; // to track previous message for secret trigger
 
-    chatSend.onclick = () => {
-      const msg = chatInput.value.trim();
-      if (msg) {
-        const userMsg = document.createElement("div");
-        userMsg.className = "chat-user";
-        userMsg.innerText = msg;
-        chatMessages.appendChild(userMsg);
-        chatInput.value = "";
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+  chatIcon.onclick = () => {
+    chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+  };
 
-        // Simulate bot reply
-        const botReply = document.createElement("div");
-        botReply.className = "chat-bot";
-        botReply.innerText = "I'm just a demo for now 😊";
-        setTimeout(() => {
-          chatMessages.appendChild(botReply);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 500);
-      }
-    };
-  </script>
+  chatSend.onclick = () => {
+    const msg = chatInput.value.trim();
+    if (!msg) return;
+
+    addUserMessage(msg);
+    chatInput.value = "";
+
+    // Check for secret trigger
+    const normalized = msg.toLowerCase();
+    if (
+      lastQuestion === "do you sell fenders?" &&
+      normalized === "do you sell gibsons?"
+    ) {
+      addBotMessage("Hey you've triggered the secret function. Opening private room…");
+setTimeout(() => {
+  window.open("https://app.element.io/#/room/#whistle-secret:matrix.org", "_blank");
+}, 1500);
+
+      lastQuestion = "";
+      return;
+    }
+
+    // Save this as the last question
+    lastQuestion = normalized;
+
+    // Generate a more intelligent reply
+    let reply = generateReply(normalized);
+    setTimeout(() => {
+      addBotMessage(reply);
+    }, 500);
+  };
+
+  function addUserMessage(text) {
+    const userMsg = document.createElement("div");
+    userMsg.className = "chat-user";
+    userMsg.innerText = text;
+    chatMessages.appendChild(userMsg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addBotMessage(text) {
+    const botMsg = document.createElement("div");
+    botMsg.className = "chat-bot";
+    botMsg.innerText = text;
+    chatMessages.appendChild(botMsg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function generateReply(message) {
+    if (message.includes("guitar")) return "We’ve got a range of guitars! Acoustic, electric — you name it.";
+    if (message.includes("keyboard")) return "Yes! We sell Yamaha and Casio digital keyboards.";
+    if (message.includes("drum")) return "Definitely. We have electronic and acoustic drum sets.";
+    if (message.includes("price") || message.includes("cost"))
+      return "Our prices are listed under each product. Let me know what you’re looking for!";
+    if (message.includes("fender"))
+      return "We might carry Fender guitars — what model are you looking for?";
+    if (message.includes("gibson"))
+      return "Gibson makes great guitars. Let me check stock for you.";
+    return "I’m here to help with your music gear questions!";
+  }
+</script>
+
 </body>
 </html>
 
