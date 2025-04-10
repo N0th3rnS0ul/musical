@@ -13,8 +13,8 @@ body {
 /* Center the Google logo */
 #google-logo {
     margin-bottom: 20px;
-    width: 272px; /* Google logo size */
-    height: 92px; /* Google logo size */
+    max-width: 100%; /* Ensures the logo does not overflow */
+    height: auto; /* Maintains the original aspect ratio */
 }
 
 /* Search Box Container */
