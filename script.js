@@ -1,9 +1,9 @@
-function startChat() {
-    // Hide the search box and show the chatbot UI
-    document.querySelector('.search-container').style.display = 'none';
-    document.querySelector('#chatbot').style.display = 'block';
 
-    // Initiate the chatbot with a greeting
+function openChat() {
+    // Show the chatbot UI when the button is clicked
+    document.getElementById('chatbot').style.display = 'block';
+    document.getElementById('chatbot-button').style.display = 'none'; // Hide the chatbot button
+
     const chatDiv = document.getElementById('chat');
     chatDiv.innerHTML += "<p><b>Chatbot:</b> Hello! How can I help you today?</p>";
 }
