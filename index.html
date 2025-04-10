@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbotv2</title>
+    <title>Chatbotv3</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
@@ -26,14 +26,8 @@
     <div id="chatbot" class="chatbot-container" style="display:none;">
         <div id="chat"></div>
         <input type="text" id="user-input" placeholder="Talk to me...">
+        <button id="close-chat" onclick="closeChat()">Close</button> <!-- Close button -->
     </div>
-
-    <!-- Hidden Chatbot UI with Close Button -->
-<div id="chatbot" class="chatbot-container" style="display:none;">
-    <div id="chat"></div>
-    <input type="text" id="user-input" placeholder="Talk to me...">
-    <button id="close-chat" onclick="closeChat()">Close</button> <!-- Close button -->
-</div>
 
     <script src="script.js"></script> <!-- Link to your JS file -->
 </body>
