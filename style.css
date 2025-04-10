@@ -13,7 +13,7 @@ body {
 /* Center the Google logo */
 #google-logo {
     margin-bottom: 20px;
-    width: auto; /* Prevent resizing */
+    width: 75%; /* Prevent resizing */
     height: auto; /* Prevent resizing */
     max-width: 272px; /* This will be the maximum width, adjust this if necessary */
     max-height: 92px; /* Adjust this to control the max height of the logo */
