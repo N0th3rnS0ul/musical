@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Floating Chatbot</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <!-- Placeholder logo image (can be a simple text or logo graphic) -->
-            <img src="assets/googlelogo.png" alt="Logo">
-        </div>
+        <!-- Search box (will do nothing) -->
         <div class="search-container">
-            <input type="text" id="search-box" placeholder="Search the web">
-            <button onclick="startChat()">Search</button>
-        </div>
-        <!-- Hidden chatbot trigger or chatbot UI -->
-        <div id="chatbot" style="display:none;">
-            <div id="chat"></div>
-            <input type="text" id="user-input" placeholder="Talk to me...">
+            <input type="text" id="search-box" placeholder="Search the web" disabled>
         </div>
     </div>
+
+    <!-- Floating Chatbot Button -->
+    <div id="chatbot-button" onclick="openChat()">
+        <button>Chat</button>
+    </div>
+
+    <!-- Hidden Chatbot UI -->
+    <div id="chatbot" class="chatbot-container" style="display:none;">
+        <div id="chat"></div>
+        <input type="text" id="user-input" placeholder="Talk to me...">
+    </div>
+
     <script src="script.js"></script> <!-- Link to your JS file -->
 </body>
 </html>
