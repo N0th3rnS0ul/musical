@@ -4,16 +4,13 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: #fff;
+    background: #f0f0f0;
     font-family: Arial, sans-serif;
+    position: relative;
 }
 
 .container {
     text-align: center;
-}
-
-.logo img {
-    max-width: 200px;
 }
 
 .search-container {
@@ -24,20 +21,45 @@ body {
     width: 400px;
     padding: 10px;
     font-size: 18px;
+    background-color: #ddd;
+    border: 1px solid #bbb;
+    cursor: not-allowed; /* Disable the search box */
 }
 
-#chatbot {
-    margin-top: 20px;
+#chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 100;
+}
+
+#chatbot-button button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+
+.chatbot-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
     background: #f5f5f5;
     border-radius: 10px;
     padding: 15px;
     width: 300px;
-    margin-top: 20px;
-    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #user-input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
+    margin-top: 10px;
 }
